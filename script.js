@@ -35,11 +35,18 @@ loadingAreaGreen.animate(
 
 //ローディング中テキスト
 loadingText.animate(
+    [
+        {
+            opacity: 1,
+            offset: .8
+        },
+        {
+            opacity: 0,
+            offset: 1
+        },
+    ],
     {
-        opacity: [1, 0],
-    },
-    {
-        duration: 1200,
+        duration: 2000,
         easing: 'ease',
         fill: 'forwards',
     }
