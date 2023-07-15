@@ -30,7 +30,7 @@ loadingAreaGreen.animate(
         delay: 800,
         easing: 'ease',
         fill: 'forwards',
-    }
+    },
 );
 
 //ローディング中テキスト
@@ -51,6 +51,23 @@ loadingText.animate(
         fill: 'forwards',
     }
 );
+
+//画像ギャラリー
+const mainImage = document.querySelector('.gallery-image img');
+
+const thumbImages = document.querySelectorAll('.gallery-thumbnails img');
+
+//thumbImagesからforEachで取り出す
+thumbImages.forEach((thumbImage, index) => {
+
+    thumbImages[index].addEventListener('mouseover', (event) => {
+
+        mainImage.src = event.target.src;
+
+        mainImage.animate({opacity: [0, 1]}, 500);
+    });
+});
+
 
 //準備完了
 console.log('-STANDBY-')
