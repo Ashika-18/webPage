@@ -68,6 +68,72 @@ thumbImages.forEach((thumbImage, index) => {
     });
 });
 
+//スライドメニュー
+const menuOpen = document.querySelector('#menu-open');
+const menuClose = document.querySelector('#menu-close');
+const menuPanel = document.querySelector('#menu-panel');
+const menuItems = document.querySelectorAll('#menu-panel li');
+const menuOptions = {
+    duration: 1400,
+    easing: 'ease',
+    fill: 'forwards',
+};
+
+//メニューを開く
+menuOpen.addEventListener('click', () => {
+
+    menuPanel.animate({translate: ['100vw', 0]}, menuOptions);
+
+    //リンクを一つずつ順に表示
+menuItems.forEach((menuItem, index) => {
+    console.log(`${index}番目のリストです`);
+
+    menuItem.animate(
+        {
+            opacity: [0, 1],
+            translate: ['2rem', 0]
+        },
+        {
+            duration: 2400,
+            delay: 300 * index,
+            easing: 'ease',
+            fill: 'forwards',
+        });
+    });
+});
+
+//スクロールで要素を表示
+//監視対象が範囲内に現れたら実行する動作
+const animateFade = (entries, obs) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.animate(
+                {
+                    opacity: [0, 1],
+                    filter: ['blur(.4rem)', 'blur(0)'],
+                    translate: ['0 4rem', 0],
+                },
+                {
+                    duration: 2000,
+                    easing: 'ease',
+                    fill: 'forwards',
+                }
+            );
+            //一度フワッと実行されたら止める
+            obs.unobserve(entry.target);
+        }
+    });  
+};
+
+//監視設定
+const fadeObserver = new IntersectionObserver(animateFade);
+
+//.fadeinを監視するように指示
+const fadeElements = document.querySelectorAll('.fadein');
+
+fadeElements.forEach((fadeElement) => {
+    fadeObserver.observe(fadeElement);
+});
 
 //準備完了
 console.log('-STANDBY-')

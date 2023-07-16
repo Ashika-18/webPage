@@ -1,12 +1,5 @@
 @charset 'UTF-8';
 
-/* ロードアイコン */
-#container {
-    margin: 20px;
-    width: 200px;
-    height: 200px;
-    position: relative;
-  }
 /*
 VARIABLES
 ================================================ */
@@ -52,9 +45,9 @@ img {
     margin: 2rem 0;
     transition: .4s;
 }
-/* .fadein{
+.fadein{
     opacity: 0;
-} */
+}
 
 /*
 LAYOUT
